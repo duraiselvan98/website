@@ -4,7 +4,6 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 import GalleryCarousel from "@/components/GalleryCarousel";
 import GalleryGrid from "@/components/GalleryGrid";
 import BackgroundPattern from "@/components/BackgroundPattern";
-import { motion } from "framer-motion";
 
 import activity1 from "@/assets/activities/activity-1.jpg";
 import activity2 from "@/assets/activities/activity-2.jpg";
@@ -39,34 +38,7 @@ const Gallery = () => {
     <div className="min-h-screen flex flex-col">
       <Header />
       <main className="flex-1">
-        {/* Gallery Banner with Background Image */}
-        <section className="relative h-[200px] md:h-[250px] overflow-hidden">
-          <div className="absolute inset-0">
-            <img
-              src={aboutBanner}
-              alt="Gallery Banner"
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/80 to-primary/70" />
-          </div>
-          <div className="relative z-10 h-full container mx-auto px-4 flex items-center justify-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center"
-            >
-              <h1 className="font-heading font-bold text-4xl md:text-5xl text-white mb-2">
-                Gallery
-              </h1>
-              <p className="text-white/80 max-w-2xl mx-auto">
-                Moments captured from our events and activities
-              </p>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* Hero Carousel */}
+        {/* Gallery Carousel with Title - Combined Section */}
         <GalleryCarousel images={carouselImages} />
 
         {/* Gallery Grid */}

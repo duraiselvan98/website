@@ -40,13 +40,13 @@ const Contact = () => {
       icon: Phone,
       title: "044-28191232",
       subtitle: "Call us anytime",
-      color: "bg-accent",
+      color: "bg-primary",
     },
     {
       icon: Mail,
       title: "aim.ewa@gmail.com",
       subtitle: "Email us",
-      color: "bg-secondary",
+      color: "bg-primary",
     },
   ];
 
@@ -54,7 +54,7 @@ const Contact = () => {
     <div className="min-h-screen flex flex-col">
       <Header />
       <main className="flex-1">
-        <PageBanner title="Contact Us" subtitle="Get in touch with us for any queries or information" />
+        <PageBanner title="Contact Us"/>
         <ServiceBlocks />
 
         <BackgroundPattern className="py-16">

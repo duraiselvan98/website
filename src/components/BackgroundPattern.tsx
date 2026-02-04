@@ -1,29 +1,42 @@
-import patternBg from "@/assets/pattern-bg.png";
+import patternBgDark from "@/assets/pattern-bg-dark.jpg";
+import patternGeometric from "@/assets/pattern-geometric.png";
 
 interface BackgroundPatternProps {
   children: React.ReactNode;
   className?: string;
   overlay?: boolean;
+  variant?: 'default' | 'geometric';
 }
 
-const BackgroundPattern = ({ children, className = "", overlay = true }: BackgroundPatternProps) => {
+const BackgroundPattern = ({ children, className = "", overlay = true, variant = 'default' }: BackgroundPatternProps) => {
   return (
     <div className={`relative ${className}`}>
-      {/* Pattern Background */}
-      <div 
-        className="absolute inset-0 opacity-10 pointer-events-none"
-        style={{
-          backgroundImage: `url(${patternBg})`,
-          backgroundRepeat: 'repeat',
-          backgroundPosition: 'center',
-          backgroundSize: '400px',
-          filter: 'hue-rotate(200deg) saturate(2)',
-        }}
-      />
+      {/* Pattern Background - Darker and more visible */}
+      {variant === 'default' ? (
+        <div 
+          className="absolute inset-0 opacity-50 pointer-events-none"
+          style={{
+            backgroundImage: `url(${patternBgDark})`,
+            backgroundRepeat: 'repeat',
+            backgroundPosition: 'center',
+            backgroundSize: '600px',
+            filter: 'hue-rotate(200deg) saturate(1.5) brightness(0.7)',
+          }}
+        />
+      ) : (
+        <div 
+          className="absolute inset-0 opacity-30 pointer-events-none"
+          style={{
+            backgroundImage: `url(${patternGeometric})`,
+            backgroundRepeat: 'repeat',
+            backgroundPosition: 'center',
+            backgroundSize: '400px',
+          }}
+        />
+      )}
       
-      {/* Blue tint overlay */}
       {overlay && (
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/5 via-transparent to-blue-800/5 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-primary/15 to-primary/20 pointer-events-none" />
       )}
       
       {/* Content */}

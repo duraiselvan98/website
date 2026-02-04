@@ -27,14 +27,14 @@ const GalleryGrid = ({ images, title, description }: GalleryGridProps) => {
       "col-span-1 row-span-2",
       "col-span-1 row-span-1",
       "col-span-1 row-span-1",
-      "col-span-2 row-span-1 md:col-span-2",
+      "col-span-2 row-span-1 md:col-span-1",
       "col-span-1 row-span-1",
     ];
     return patterns[index % patterns.length];
   };
 
   return (
-    <section className="py-16 bg-background">
+    <section className="py-10 sm:py-12 md:py-16 bg-background">
       <div className="container mx-auto px-4">
         {/* Section header */}
         <motion.div
@@ -42,20 +42,20 @@ const GalleryGrid = ({ images, title, description }: GalleryGridProps) => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-8 sm:mb-10 md:mb-12"
         >
-          <h2 className="font-heading font-bold text-3xl md:text-4xl text-primary mb-4">
+          <h2 className="font-heading font-bold text-2xl sm:text-3xl md:text-4xl text-primary mb-3 sm:mb-4">
             {title}
           </h2>
           {description && (
-            <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+            <p className="text-sm sm:text-base text-muted-foreground max-w-2xl mx-auto leading-relaxed px-2">
               {description}
             </p>
           )}
         </motion.div>
 
         {/* Gallery grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 auto-rows-[200px]">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4 auto-rows-[120px] sm:auto-rows-[160px] md:auto-rows-[200px]">
           {images.map((image, index) => (
             <motion.div
               key={index}
@@ -73,7 +73,7 @@ const GalleryGrid = ({ images, title, description }: GalleryGridProps) => {
                 loading="lazy"
               />
               <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/40 transition-all duration-300 flex items-center justify-center">
-                <ZoomIn className="w-10 h-10 text-white opacity-0 group-hover:opacity-100 transition-all duration-300 transform scale-50 group-hover:scale-100" />
+                <ZoomIn className="w-8 h-8 sm:w-10 sm:h-10 text-white opacity-0 group-hover:opacity-100 transition-all duration-300 transform scale-50 group-hover:scale-100" />
               </div>
             </motion.div>
           ))}

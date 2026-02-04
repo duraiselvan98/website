@@ -5,6 +5,7 @@ export interface CommitteeMember {
   zone: string;
   state: string;
   contact: string;
+  photo: string;
 }
 
 export interface CommitteeCategory {
@@ -13,25 +14,41 @@ export interface CommitteeCategory {
   members: CommitteeMember[];
 }
 
+// Generate a placeholder photo URL for each member
+const getPlaceholderPhoto = (name: string, index: number): string => {
+  const styles = ['adventurer', 'avataaars', 'big-ears', 'bottts', 'croodles', 'fun-emoji', 'lorelei', 'micah', 'miniavs', 'personas'];
+  const style = styles[index % styles.length];
+  return `https://api.dicebear.com/7.x/${style}/svg?seed=${encodeURIComponent(name)}`;
+};
+
+type MemberData = Omit<CommitteeMember, 'photo'>;
+
+const addPhotosToMembers = (members: MemberData[], startIndex: number): CommitteeMember[] => {
+  return members.map((member, idx) => ({
+    ...member,
+    photo: getPlaceholderPhoto(member.name, startIndex + idx)
+  }));
+};
+
 export const committeeCategories: CommitteeCategory[] = [
   {
     title: "President",
     color: "bg-rose-600",
-    members: [
+    members: addPhotosToMembers([
       { name: "Avinash Kumar", srNo: "61444", zone: "IR Cell, Patna", state: "Bihar", contact: "8210385795" },
-    ]
+    ], 0)
   },
   {
     title: "Working President",
     color: "bg-red-700",
-    members: [
+    members: addPhotosToMembers([
       { name: "Kuldeep Singh", srNo: "76735", zone: "Kanpur", state: "Uttar Pradesh", contact: "9956033059" },
-    ]
+    ], 1)
   },
   {
     title: "Vice President(s)",
     color: "bg-blue-600",
-    members: [
+    members: addPhotosToMembers([
       { name: "C Prabhakaran", srNo: "33303", zone: "Poonamallee", state: "Tamil Nadu", contact: "9566665317" },
       { name: "B B Rabha", srNo: "39296", zone: "Guwahati", state: "North East Region", contact: "9748795747" },
       { name: "Manoj Kumar Tigga", srNo: "55777", zone: "Ranchi", state: "Jharkhand", contact: "9835164853" },
@@ -39,19 +56,19 @@ export const committeeCategories: CommitteeCategory[] = [
       { name: "K Ramesh Babu", srNo: "26376", zone: "Karimnagar", state: "Telangana", contact: "9948294755" },
       { name: "Vetri Singam", srNo: "55090", zone: "Madurai", state: "Tamil Nadu", contact: "9443477343" },
       { name: "Pronoto Saha", srNo: "77273", zone: "Kolkata Central", state: "West Bengal", contact: "7908052809" },
-    ]
+    ], 2)
   },
   {
     title: "General Secretary",
     color: "bg-purple-600",
-    members: [
+    members: addPhotosToMembers([
       { name: "Babu K", srNo: "54750", zone: "Chennai South", state: "Tamil Nadu", contact: "6379596416" },
-    ]
+    ], 9)
   },
   {
     title: "Deputy General Secretary",
     color: "bg-violet-600",
-    members: [
+    members: addPhotosToMembers([
       { name: "Kanagaselvan", srNo: "54836", zone: "Chennai South", state: "Tamil Nadu", contact: "7639884356" },
       { name: "Santosh Kumar Patil", srNo: "61658", zone: "Jabalpur", state: "Madhya Pradesh", contact: "9589511402" },
       { name: "Pradeep Kumar", srNo: "83082", zone: "Jhansi", state: "Uttar Pradesh", contact: "9454088119" },
@@ -59,12 +76,12 @@ export const committeeCategories: CommitteeCategory[] = [
       { name: "CH Chinnamaddaiah", srNo: "55698", zone: "Hyderabad", state: "Telangana", contact: "9743828382" },
       { name: "Uma Devi", srNo: "25183", zone: "Service Branch", state: "Tamil Nadu", contact: "" },
       { name: "Anand", srNo: "67727", zone: "Salem", state: "Tamil Nadu", contact: "9790232643" },
-    ]
+    ], 10)
   },
   {
     title: "Assistant General Secretary",
     color: "bg-amber-600",
-    members: [
+    members: addPhotosToMembers([
       { name: "Mohanraj E", srNo: "67198", zone: "Puducherry", state: "Tamil Nadu", contact: "7397000397" },
       { name: "Anjaleena Tirkey", srNo: "33378", zone: "Bhopal", state: "Madhya Pradesh", contact: "8939404455" },
       { name: "Selvakumar K P", srNo: "", zone: "", state: "Tamil Nadu", contact: "" },
@@ -75,33 +92,33 @@ export const committeeCategories: CommitteeCategory[] = [
       { name: "Sasikumar", srNo: "64054", zone: "Ernakulam", state: "Kerala", contact: "9677677603" },
       { name: "Rajendra Meena", srNo: "36871", zone: "Jaipur", state: "Rajasthan", contact: "9596933001" },
       { name: "Manjeet Singh", srNo: "81736", zone: "Gurgaon", state: "Haryana", contact: "" },
-    ]
+    ], 17)
   },
   {
     title: "Organizing Secretary",
     color: "bg-orange-600",
-    members: [
+    members: addPhotosToMembers([
       { name: "Satya Prakash Meena", srNo: "75193", zone: "Jaipur", state: "Rajasthan", contact: "8962951492" },
-    ]
+    ], 27)
   },
   {
     title: "Treasurer",
     color: "bg-teal-600",
-    members: [
+    members: addPhotosToMembers([
       { name: "Nandakumar D", srNo: "73096", zone: "Chennai North", state: "Tamil Nadu", contact: "9884340379" },
-    ]
+    ], 28)
   },
   {
     title: "Assistant Treasurer",
     color: "bg-cyan-600",
-    members: [
+    members: addPhotosToMembers([
       { name: "Satyamurthy", srNo: "41035", zone: "Chennai North", state: "Tamil Nadu", contact: "9444432998" },
-    ]
+    ], 29)
   },
   {
     title: "Executive Committee Members",
     color: "bg-indigo-600",
-    members: [
+    members: addPhotosToMembers([
       { name: "Swarna Keerthana", srNo: "94179", zone: "Amaravathi", state: "Andhra Pradesh", contact: "7670936295" },
       { name: "P Anjaneya Prasad", srNo: "65270", zone: "Rajahmundry", state: "Andhra Pradesh", contact: "9492925758" },
       { name: "Basaweswara Rao", srNo: "56522", zone: "Visakhapatnam", state: "Andhra Pradesh", contact: "6300633465" },
@@ -150,7 +167,7 @@ export const committeeCategories: CommitteeCategory[] = [
       { name: "Indrabhan Singh", srNo: "85143", zone: "Agra", state: "Uttar Pradesh", contact: "7007996337" },
       { name: "Shivakant", srNo: "80305", zone: "Kanpur", state: "Uttar Pradesh", contact: "9455015011" },
       { name: "Bishwajit Kisku", srNo: "78040", zone: "Kolkata North", state: "West Bengal", contact: "9830282409" },
-    ]
+    ], 30)
   },
 ];
 

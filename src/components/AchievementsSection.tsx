@@ -8,7 +8,7 @@ import activity3 from "@/assets/activities/activity-3.jpg";
 const achievements = [
   {
     title: "Achievement of our association 1",
-    content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+    content: "Led national-level organizational initiatives with multi-state coordination.",
     image: activity1,
     color: "bg-rose-600",
     hoverColor: "hover:bg-rose-700",

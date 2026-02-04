@@ -34,7 +34,7 @@ const Grievance = () => {
     <div className="min-h-screen flex flex-col">
       <Header />
       <main className="flex-1">
-        <PageBanner title="Grievance Portal" subtitle="Submit your grievance and we will address it promptly" />
+        <PageBanner title="Grievance Portal"/>
         <ServiceBlocks />
 
         <BackgroundPattern className="py-20">

@@ -4,72 +4,128 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 import PageBanner from "@/components/PageBanner";
 import ServiceBlocks from "@/components/ServiceBlocks";
 import BackgroundPattern from "@/components/BackgroundPattern";
-import { motion } from "framer-motion";
-import { Calendar, MapPin, Users, Plus, ArrowRight } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Calendar, MapPin, Users, Plus, ArrowRight, X } from "lucide-react";
 import { useState } from "react";
 
-import activity1 from "@/assets/activities/activity-1.jpg";
-import activity2 from "@/assets/activities/activity-2.jpg";
-import activity3 from "@/assets/activities/activity-3.jpg";
-import activity4 from "@/assets/activities/activity-4.jpg";
+import ambedkarBirthday from "@/assets/events/ambedkar-birthday.jpg";
+import beffiDonation from "@/assets/events/beffi-donation.jpg";
+import felicitationRetirement from "@/assets/events/felicitation-retirement.jpg";
+import mdCeoJain from "@/assets/events/md-ceo-jain.jpg";
+import mdCeoBinod from "@/assets/events/md-ceo-binod.jpg";
+import ncscMeeting from "@/assets/events/ncsc-meeting.jpg";
 
 const events = [
   {
     id: 1,
-    title: "42nd Annual General Body Meeting",
-    date: "09 November 2024",
+    title: "Ambedkar Birthday 2025",
+    date: "14 April 2025",
     location: "Chennai, Tamil Nadu",
-    image: activity1,
-    description: "The 42nd Annual General Body Meeting brought together members from across the country to discuss welfare initiatives and policy updates.",
+    image: ambedkarBirthday,
+    description: "Grand celebration of Dr. B.R. Ambedkar's birthday with floral tributes and cultural programs honoring the architect of Indian Constitution.",
     details: [
-      "Review of previous year's activities and achievements",
-      "Discussion on upcoming welfare schemes",
-      "Election of new committee members",
-      "Policy recommendations for SC/ST employee welfare",
+      "Garlanding of Ambedkar statue",
+      "Cultural programs and speeches",
+      "Distribution of books on Ambedkar's teachings",
+      "Community gathering and fellowship",
     ]
   },
   {
     id: 2,
-    title: "Member Felicitation Ceremony",
-    date: "09 November 2024",
-    location: "Chennai Convention Center",
-    image: activity2,
-    description: "Recognition ceremony honoring outstanding contributions of our members to the association.",
-    details: []
+    title: "BEFFI Krishna School Donation",
+    date: "20 January 2025",
+    location: "Chennai",
+    image: beffiDonation,
+    description: "Association donated educational materials and support to BEFFI Krishna School as part of our commitment to education.",
+    details: [
+      "Donation of educational materials",
+      "Support for underprivileged students",
+      "Commitment to education welfare",
+    ]
   },
   {
     id: 3,
-    title: "Award Distribution Program",
-    date: "09 November 2024",
+    title: "Felicitation & Fair Retirement",
+    date: "15 January 2025",
     location: "Chennai",
-    image: activity3,
-    description: "Annual awards ceremony recognizing exceptional service and dedication of members.",
-    details: []
+    image: felicitationRetirement,
+    description: "Honoring our retiring members with a grand felicitation ceremony celebrating their years of dedicated service.",
+    details: [
+      "Recognition of retiring members",
+      "Presentation of mementos",
+      "Celebration of dedicated service",
+    ]
   },
   {
     id: 4,
-    title: "Recognition Ceremony",
-    date: "09 November 2024",
+    title: "Indian Bank MD CEO Jain Retirement",
+    date: "10 January 2025",
     location: "Chennai",
-    image: activity4,
-    description: "Special recognition event celebrating the achievements of our member community.",
-    details: []
+    image: mdCeoJain,
+    description: "Farewell ceremony for Indian Bank MD & CEO, acknowledging their leadership and contributions to the banking sector.",
+    details: [
+      "Farewell address",
+      "Recognition of contributions",
+      "Association's tribute to leadership",
+    ]
+  },
+  {
+    id: 5,
+    title: "Indian Bank MD CEO Mr. Binod Kumar",
+    date: "05 January 2025",
+    location: "Chennai",
+    image: mdCeoBinod,
+    description: "Welcome ceremony and meeting with new Indian Bank MD & CEO Mr. Binod Kumar to discuss employee welfare initiatives.",
+    details: [
+      "Welcome ceremony for new MD & CEO",
+      "Discussion on welfare initiatives",
+      "Building partnerships for employee rights",
+    ]
+  },
+  {
+    id: 6,
+    title: "NCSC Meeting 12.02.2025",
+    date: "12 February 2025",
+    location: "New Delhi",
+    image: ncscMeeting,
+    description: "Meeting with National Commission for Scheduled Castes to discuss employee welfare and policy recommendations.",
+    details: [
+      "Policy discussions with NCSC",
+      "Presentation of employee concerns",
+      "Welfare recommendations submission",
+    ]
   },
 ];
 
+interface Event {
+  id: number;
+  title: string;
+  date: string;
+  location: string;
+  image: string;
+  description: string;
+  details: string[];
+}
+
 const Events = () => {
   const [selectedEvent, setSelectedEvent] = useState<number | null>(null);
+  const [lightboxImage, setLightboxImage] = useState<string | null>(null);
+
+  const handlePlusClick = (e: React.MouseEvent, event: Event) => {
+    e.stopPropagation();
+    setLightboxImage(event.image);
+  };
 
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
       <main className="flex-1">
-        <PageBanner title="Events" subtitle="Stay updated with our latest events and activities" />
+        <PageBanner title="Events"/>
         <ServiceBlocks />
 
-        <BackgroundPattern className="py-16">
+        <BackgroundPattern className="py-8 sm:py-12 md:py-16">
           <div className="container mx-auto px-4">
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
               {events.map((event, index) => (
                 <motion.div
                   key={event.id}
@@ -92,16 +148,19 @@ const Events = () => {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent" />
                     
-                    {/* Hover overlay */}
+                    {/* Hover overlay with Plus button */}
                     <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/30 transition-colors duration-300 flex items-center justify-center">
-                      <div className="w-14 h-14 rounded-full bg-white/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <Plus className="w-6 h-6 text-primary" />
-                      </div>
+                      <button
+                        onClick={(e) => handlePlusClick(e, event)}
+                        className="w-10 h-10 sm:w-14 sm:h-14 rounded-full bg-white/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-white hover:scale-110"
+                      >
+                        <Plus className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
+                      </button>
                     </div>
 
                     {/* Title overlay */}
-                    <div className="absolute bottom-0 left-0 right-0 p-4">
-                      <h3 className="font-heading font-bold text-white text-sm md:text-base">
+                    <div className="absolute bottom-0 left-0 right-0 p-2 sm:p-4">
+                      <h3 className="font-heading font-bold text-white text-xs sm:text-sm md:text-base line-clamp-2">
                         {event.title}
                       </h3>
                     </div>
@@ -113,70 +172,101 @@ const Events = () => {
         </BackgroundPattern>
 
         {/* Selected Event Details */}
-        {selectedEvent && (
-          <motion.section
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="py-12 bg-muted/30"
-          >
-            <div className="container mx-auto px-4">
-              {events.filter(e => e.id === selectedEvent).map(event => (
-                <motion.div
-                  key={event.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="max-w-4xl mx-auto"
-                >
-                  <h2 className="font-heading font-bold text-3xl text-primary mb-6">
-                    {event.title}
-                  </h2>
-                  
-                  <div className="bg-card rounded-2xl overflow-hidden shadow-elevated border border-border">
-                    <div className="aspect-video">
-                      <img
-                        src={event.image}
-                        alt={event.title}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    <div className="p-8">
-                      <div className="flex flex-wrap gap-6 mb-6">
-                        <span className="flex items-center gap-2 text-muted-foreground">
-                          <Calendar className="w-5 h-5 text-accent" />
-                          {event.date}
-                        </span>
-                        <span className="flex items-center gap-2 text-muted-foreground">
-                          <MapPin className="w-5 h-5 text-secondary" />
-                          {event.location}
-                        </span>
-                        <span className="flex items-center gap-2 text-muted-foreground">
-                          <Users className="w-5 h-5 text-primary" />
-                          Open to all members
-                        </span>
+        <AnimatePresence>
+          {selectedEvent && (
+            <motion.section
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              className="py-8 sm:py-12 bg-muted/30"
+            >
+              <div className="container mx-auto px-4">
+                {events.filter(e => e.id === selectedEvent).map(event => (
+                  <motion.div
+                    key={event.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="max-w-4xl mx-auto"
+                  >
+                    <h2 className="font-heading font-bold text-xl sm:text-2xl md:text-3xl text-primary mb-4 sm:mb-6">
+                      {event.title}
+                    </h2>
+                    
+                    <div className="bg-card rounded-2xl overflow-hidden shadow-elevated border border-border">
+                      <div className="aspect-video">
+                        <img
+                          src={event.image}
+                          alt={event.title}
+                          className="w-full h-full object-cover"
+                        />
                       </div>
-                      
-                      <p className="text-foreground leading-relaxed mb-6">
-                        {event.description}
-                      </p>
-                      
-                      {event.details.length > 0 && (
-                        <ul className="space-y-3 mb-8">
-                          {event.details.map((detail, idx) => (
-                            <li key={idx} className="flex items-start gap-3 text-muted-foreground">
-                              <ArrowRight className="w-4 h-4 text-primary mt-1 flex-shrink-0" />
-                              {detail}
-                            </li>
-                          ))}
-                        </ul>
-                      )}
+                      <div className="p-4 sm:p-6 md:p-8">
+                        <div className="flex flex-wrap gap-3 sm:gap-6 mb-4 sm:mb-6">
+                          <span className="flex items-center gap-2 text-muted-foreground text-xs sm:text-sm">
+                            <Calendar className="w-4 h-4 sm:w-5 sm:h-5 text-accent" />
+                            {event.date}
+                          </span>
+                          <span className="flex items-center gap-2 text-muted-foreground text-xs sm:text-sm">
+                            <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-secondary" />
+                            {event.location}
+                          </span>
+                          <span className="flex items-center gap-2 text-muted-foreground text-xs sm:text-sm">
+                            <Users className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
+                            Open to all members
+                          </span>
+                        </div>
+                        
+                        <p className="text-foreground leading-relaxed mb-4 sm:mb-6 text-sm sm:text-base">
+                          {event.description}
+                        </p>
+                        
+                        {event.details.length > 0 && (
+                          <ul className="space-y-2 sm:space-y-3 mb-6 sm:mb-8">
+                            {event.details.map((detail, idx) => (
+                              <li key={idx} className="flex items-start gap-2 sm:gap-3 text-muted-foreground text-sm sm:text-base">
+                                <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 text-primary mt-1 flex-shrink-0" />
+                                {detail}
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.section>
-        )}
+                  </motion.div>
+                ))}
+              </div>
+            </motion.section>
+          )}
+        </AnimatePresence>
+
+        {/* Lightbox Modal */}
+        <AnimatePresence>
+          {lightboxImage && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4"
+              onClick={() => setLightboxImage(null)}
+            >
+              <button
+                onClick={() => setLightboxImage(null)}
+                className="absolute top-4 right-4 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
+              >
+                <X className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+              </button>
+              <motion.img
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.8, opacity: 0 }}
+                src={lightboxImage}
+                alt="Event full view"
+                className="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl"
+                onClick={(e) => e.stopPropagation()}
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
       </main>
       <Footer />
       <WhatsAppButton />

@@ -44,7 +44,7 @@ const Circular = () => {
     <div className="min-h-screen flex flex-col">
       <Header />
       <main className="flex-1">
-        <PageBanner title="Circular" subtitle="All India Indian Bank SC/ST Employees' Welfare Association" />
+        <PageBanner title="Circular"/>
         <ServiceBlocks />
 
         <BackgroundPattern className="py-12">

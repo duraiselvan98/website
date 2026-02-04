@@ -27,7 +27,7 @@ const Header = () => {
           </a>
           <a href="tel:044-28191232" className="flex items-center gap-2 hover:text-accent transition-colors">
             <Phone className="w-4 h-4" />
-            <span>044 - 2819 1232</span>
+            <span>044-28191232  </span>
           </a>
         </div>
       </div>
@@ -37,14 +37,14 @@ const Header = () => {
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16 lg:h-20">
             {/* Logo */}
-            <Link to="/" className="flex items-center gap-3">
-              <img src={logo} alt="AIIBSCSTEWA" className="h-16 lg:h-20 w-auto object-contain" />
-              <div className="hidden md:flex flex-col">
-                <span className="font-heading font-bold text-lg lg:text-xl text-primary leading-tight">
+            <Link to="/" className="flex items-center gap-2 sm:gap-3">
+              <img src={logo} alt="AIIBSCSTEWA" className="h-12 sm:h-14 md:h-16 lg:h-20 w-auto object-contain" />
+              <div className="flex flex-col">
+                <span className="font-heading font-bold text-xs sm:text-sm md:text-lg lg:text-xl text-primary leading-tight">
                   AIIBSCSTEWA
                 </span>
-                <span className="text-xs lg:text-sm text-muted-foreground leading-tight">
-                  All India Insurance Bank SC/ST Employees Welfare Association
+                <span className="text-[8px] sm:text-[10px] md:text-xs lg:text-sm text-muted-foreground leading-tight max-w-[120px] sm:max-w-[180px] md:max-w-none">
+                  All India Indian Bank SC/ST EWA
                 </span>
               </div>
             </Link>

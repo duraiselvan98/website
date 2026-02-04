@@ -43,7 +43,7 @@ const services = [
 const ServiceBlocks = () => {
   return (
     <section className="w-full">
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
         {services.map((service, index) => (
           <motion.div
             key={service.title}
@@ -54,12 +54,12 @@ const ServiceBlocks = () => {
           >
             <Link
               to={service.path}
-              className={`group flex flex-col items-center justify-center p-8 md:p-10 ${service.bgClass} ${service.hoverClass} transition-all duration-300 hover:shadow-xl`}
+              className={`group flex flex-col items-center justify-center p-4 sm:p-6 md:p-8 lg:p-10 ${service.bgClass} ${service.hoverClass} transition-all duration-300 hover:shadow-xl`}
             >
-              <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                <service.icon className="w-8 h-8 md:w-10 md:h-10 text-white" />
+              <div className="w-10 h-10 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-full bg-white/20 flex items-center justify-center mb-2 sm:mb-3 md:mb-4 group-hover:scale-110 transition-transform">
+                <service.icon className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 text-white" />
               </div>
-              <span className="text-white font-bold text-sm md:text-base text-center">
+              <span className="text-white font-bold text-xs sm:text-sm md:text-base text-center">
                 {service.title}
               </span>
             </Link>

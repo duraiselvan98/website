@@ -22,7 +22,9 @@ const Index = () => {
         <BackgroundPattern>
           <WelcomeSection />
         </BackgroundPattern>
-        <RecentActivities />
+        <BackgroundPattern>
+          <RecentActivities />
+        </BackgroundPattern>
         <JoinCommunity />
         <MentorsSection />
         <VisionMission />

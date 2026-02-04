@@ -14,7 +14,6 @@ const Committee = () => {
       <main className="flex-1">
         <PageBanner 
           title="Our Committee" 
-          subtitle="Meet the dedicated leaders serving our community"
         />
         <ServiceBlocks />
 
